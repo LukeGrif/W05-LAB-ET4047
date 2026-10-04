@@ -4,16 +4,14 @@
 **University of Limerick — Department of Electronic & Computer Engineering**
 
 In this lab you send data from an Arduino back to itself, then between two
-Arduinos, and finally add a **SHA-1 hash** to every message so the receiver can
-detect whether anything was corrupted on the way. An optional extension adds
-ACK/NACK replies and automatic retries.
+Arduinos, and finally scramble every message with a **Caesar cipher** so that
+only a board with the right key can read it.
 
 | # | Task | What you do |
 |---|------|-------------|
 | 1 | UART loopback on a single board | Wire D1 (TX) to D0 (RX) and check that everything sent comes back |
 | 2 | Communication between two boards | Board A sends, Board B receives with a line-buffered receiver |
-| 3 | Message integrity with SHA-1 | Append a hash to each message; a tamper button corrupts messages on purpose. Exercise 3d is specific to your display |
-| Ext | Acknowledgements (ACK/NACK) | The receiver replies and the sender retries failed messages |
+| 3 | Secret messages with a Caesar cipher | Board A encrypts each message (shift 3), Board B decrypts it |
 
 ---
 
@@ -29,16 +27,13 @@ different.
 | Adafruit RGB LCD shield | [`Code/Adafruit_RGB_LCD_Shield`](Code/Adafruit_RGB_LCD_Shield) | Adafruit RGB LCD Shield Library (by Adafruit) |
 
 Every sketch is a **single `.ino` file**, with no extra tabs or `.h` files to
-add. The SHA-1 function is at the bottom of each sketch that uses it. All the
-code is fully commented.
+add. All the code is fully commented.
 
 | Task | Board A (no LCD) | Board B (LCD) |
 |------|------------------|---------------|
 | 1 | `Task1_Loopback` (one board, D1 → D0) | — |
 | 2 | `Task2_Sender` | `Task2_Receiver` |
 | 3 | `Task3_Sender` | `Task3_Receiver` |
-| Ext | `Extension_Sender_ACK` | `Extension_Receiver_ACK` |
-| 3d answer | — | `Solutions/Task3d_Receiver_Solution` |
 
 The sender sketches are the same in both folders, because Board A has no LCD.
 

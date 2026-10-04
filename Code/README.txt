@@ -16,17 +16,13 @@ W05 LAB - UART Communication and Data Integrity (ET4047)
 
    SoftwareSerial and Wire are built in.
 
-4. Open each sketch with File -> Open. Every sketch is a single .ino
-   file: there are no extra tabs or .h files to add.
+4. Open each sketch with File -> Open. Every sketch is a single .ino file.
 
-   Task1_Loopback           one board, jumper D1 -> D0
-   Task2_Sender             Board A (no LCD)
-   Task2_Receiver           Board B (LCD)
-   Task3_Sender             Board A (no LCD), button on D2
-   Task3_Receiver           Board B (LCD)
-   Extension_Sender_ACK     Board A (no LCD)
-   Extension_Receiver_ACK   Board B (LCD)
-   Solutions/               answer to exercise 3d for this display
+   Task1_Loopback    one board, jumper D1 -> D0
+   Task2_Sender      Board A (no LCD)
+   Task2_Receiver    Board B (LCD)
+   Task3_Sender      Board A (no LCD), Caesar cipher
+   Task3_Receiver    Board B (LCD), Caesar cipher
 
 The sender sketches are identical in both folders, because Board A
 has no LCD.
