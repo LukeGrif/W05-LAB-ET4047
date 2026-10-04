@@ -3,6 +3,8 @@
 **Module:** ET4047 · **Author:** Luke Griffin
 **University of Limerick — Department of Electronic & Computer Engineering**
 
+🌐 **Open the lab online:** https://lukegrif.github.io/W05-LAB-ET4047/
+
 In this lab you send data from an Arduino back to itself, then between two
 Arduinos, and finally scramble every message with a **Caesar cipher** so that
 only a board with the right key can read it.
@@ -43,6 +45,9 @@ The sender sketches are the same in both folders, because Board A has no LCD.
 
 | Path | Description |
 |------|-------------|
+| `index.html` | GitHub Pages landing page for the lab |
+| `viewer.html` | Renders the lab PDF in the browser |
+| `assets/` | University logos used on the landing page |
 | `W05_LAB_UART_Communication_and_Data_Integrity.pdf` | The lab document (no code listings: students open the sketches) |
 | `W05 LAB UART Communication and Data Integrity.docx` | Editable Word version |
 | `W05_UART_Lab_Code.zip` | All the sketches in one zip, ready to hand out |

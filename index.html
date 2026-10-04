@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 05 — Lab · Embedded Software</title>
+<link rel="icon" type="image/png" href="assets/ul-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ul-green:        #165E3A;
+    --ul-modern-green: #3BB143;
+    --ul-white:        #ffffff;
+    --bg:              #0c0f0d;
+    --surface:         #111812;
+    --border:          #1f2b1f;
+    --accent-dim:      rgba(59,177,67,0.15);
+    --muted:           #5a7a66;
+    --body:            #9fb8a6;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: #c8dbc8;
+    font-family: 'IBM Plex Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ══ HEADER ══════════════════════════════════════════════════════ */
+  header { border-bottom: 3px solid var(--ul-modern-green); }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--ul-white);
+    padding: 18px 28px;
+  }
+  .header-top .ul-logo { height: 58px; width: auto; }
+  .header-top .ece-logo { height: 40px; width: auto; margin-left: auto; }
+  .header-nav {
+    background: var(--ul-green);
+    color: var(--ul-white);
+    padding: 14px 28px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .header-nav .course { color: var(--ul-modern-green); }
+  .header-nav .sep { color: rgba(255,255,255,0.4); }
+  .header-nav .back {
+    margin-left: auto;
+    color: var(--ul-white);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 6px 13px;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    transition: background .14s ease, color .14s ease, border-color .14s ease;
+  }
+  .header-nav .back:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--ul-modern-green);
+    color: var(--ul-modern-green);
+  }
+
+  /* ══ HERO ════════════════════════════════════════════════════════ */
+  .hero { max-width: 1000px; margin: 0 auto; padding: 48px 28px 8px; }
+  .hero .week {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ul-modern-green);
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+    line-height: 1.1;
+    margin: 8px 0 10px;
+    color: var(--ul-white);
+  }
+  .hero h1 .accent { color: var(--ul-modern-green); }
+  .hero p { margin: 0; color: var(--muted); font-size: 1rem; max-width: 64ch; }
+
+  /* ══ OPTIONS ═════════════════════════════════════════════════════ */
+  main { max-width: 1000px; margin: 0 auto; padding: 28px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 16px;
+  }
+  .option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 22px 22px;
+    overflow: hidden;
+    transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+  }
+  .option::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--border);
+    transition: background .14s ease;
+  }
+  .option:hover {
+    transform: translateY(-4px);
+    border-color: var(--ul-modern-green);
+    box-shadow: 0 10px 30px rgba(59,177,67,0.18);
+  }
+  .option:hover::before { background: var(--ul-modern-green); }
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ul-modern-green);
+  }
+  .option h2 {
+    margin: 10px 0 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ul-white);
+  }
+  .option p { margin: 0; font-size: 0.85rem; line-height: 1.55; color: var(--body); flex: 1; }
+  .meta { margin-top: 14px; font-size: 0.75rem; color: var(--muted); }
+  .links { margin-top: 18px; display: flex; gap: 9px; flex-wrap: wrap; }
+  .link {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 8px 13px;
+    border-radius: 7px;
+    transition: background .14s ease, color .14s ease, border-color .14s ease;
+  }
+  .link.start { background: var(--ul-modern-green); color: #06210f; }
+  .link.start:hover { background: #4cd156; }
+  .link.code { color: var(--ul-modern-green); border: 1px solid var(--border); }
+  .link.code:hover { border-color: var(--ul-modern-green); background: var(--accent-dim); }
+
+  footer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 8px 28px 56px;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 560px) {
+    .header-top { padding: 14px 18px; gap: 14px; }
+    .header-top .ul-logo { height: 46px; }
+    .header-top .ece-logo { height: 32px; }
+    .header-nav { padding: 12px 18px; font-size: 0.85rem; }
+    .header-nav .back { margin-left: 0; }
+    .hero { padding: 34px 18px 4px; }
+    main { padding: 22px 18px; }
+    footer { padding: 8px 18px 44px; }
+  }
+</style>
+</head>
+<body>
+  <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
+  <header>
+    <div class="header-top">
+      <a href="https://www.ul.ie" target="_blank" rel="noopener" aria-label="University of Limerick">
+        <img class="ul-logo" src="assets/ul-logo.png" alt="University of Limerick" />
+      </a>
+      <img class="ece-logo" src="assets/ece-logo.png" alt="Department of Electronic and Computer Engineering" />
+    </div>
+    <div class="header-nav">
+      <span class="course">ET4047</span>
+      <span class="sep">·</span>
+      <span>Embedded Software</span>
+      <span class="sep">·</span>
+      <span>Week 05</span>
+      <a class="back" href="https://lukegrif.github.io/LAB-ET4047/">← Main Menu</a>
+    </div>
+  </header>
+
+  <!-- ══ HERO ════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <span class="week">Week 05</span>
+    <h1>This week's <span class="accent">lab</span></h1>
+    <p>Open the lab document to start. Download the code zip and use the folder for your display: the I2C backpack LCD or the Adafruit RGB LCD shield.</p>
+  </section>
+
+  <!-- ══ OPTIONS ═════════════════════════════════════════════════════ -->
+  <main>
+    <div class="grid">
+      <div class="option">
+        <span class="tag">Lab 5</span>
+        <h2>UART Communication and Data Integrity</h2>
+        <p>Send data over UART, first looped back on one board and then between two boards, and finally scramble every message with a Caesar cipher so only a board with the right key can read it.</p>
+        <span class="meta">Hardware · 2× Arduino Nano, I2C LCD or RGB LCD shield</span>
+        <div class="links">
+          <a class="link start" href="viewer.html?lab=uart">Start this lab →</a>
+          <a class="link code" href="W05_UART_Lab_Code.zip" download>Download code (.zip)</a>
+          <a class="link code" href="https://github.com/LukeGrif/W05-LAB-ET4047/tree/main/Code" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    University of Limerick · Department of Electronic &amp; Computer Engineering
+  </footer>
+</body>
+</html>
